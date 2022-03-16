@@ -1,0 +1,32 @@
+<main id="site-main">
+  <section id="posts">
+    <div class="container">
+      <div class="grid" >
+        <!-- article -->
+
+        <div class="grid-item" *ngFor="let blogPost of blogPosts">
+          <article class="article">
+            <div class="card">
+              <div class="overflow-img">
+                <a href="#">
+                  <img [src]="blogPost.imageUrl" class="img-fluid" alt="">
+                </a>
+              </div>
+              <div class="card-body text-center px-1">
+                <a href="#" class="text-title display-1 text-dark">
+                  {{blogPost.title}}
+                </a>
+                <p class="secondary-title text-secondary display-3">
+                  <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021</span>
+                  <span><i class="far fa-comments text-primary"></i> 12</span>
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- end article -->
+      </div>
+    </div>
+  </section>
+</main>

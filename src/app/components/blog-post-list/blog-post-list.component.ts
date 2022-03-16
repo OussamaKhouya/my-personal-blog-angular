@@ -4,17 +4,20 @@ import {BlogPostService} from "../../services/blog-post.service";
 
 @Component({
   selector: 'app-blog-post-list',
-  templateUrl: './blog-post-list.component.html',
+  templateUrl: './blog-post-list-grid.component.html',
+ // templateUrl: './blog-post-list.component.html',
   styleUrls: ['./blog-post-list.component.css']
 })
 export class BlogPostListComponent implements OnInit {
 
   blogPosts: BlogPost[]=[];
 
-  constructor(private blogPostService: BlogPostService) { }
+  constructor(private blogPostService: BlogPostService) {
+  }
 
   ngOnInit(): void {
     this.listBlogPost();
+
   }
 
   private listBlogPost() {

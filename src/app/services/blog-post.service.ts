@@ -8,7 +8,7 @@ import {BlogPost} from "../common/blog-post"
 })
 export class BlogPostService {
 
-  private baseUrl = "http://localhost:8082/api/blogPosts"
+  private baseUrl = "http://localhost:8082/api/blogPosts?size=20"
 
   constructor(private httpClient: HttpClient) { }
 
