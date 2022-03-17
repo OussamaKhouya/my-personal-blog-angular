@@ -8,13 +8,16 @@ import {BlogPost} from "../common/blog-post"
 })
 export class BlogPostService {
 
-  private baseUrl = "http://localhost:8082/api/blogPosts?size=20"
+  private baseUrl = "http://localhost:8082/api/blogPosts"
 
   constructor(private httpClient: HttpClient) { }
 
-  getblogPostList(): Observable<BlogPost[]> {
-    return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
+  getblogPostList(theCategoryId: number): Observable<BlogPost[]> {
+
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
+    return this.httpClient.get<GetResponse>(searchUrl).pipe(
       map(response => response._embedded.blogPosts)
+
     );
   }
 }

@@ -326,6 +326,11 @@ a{
   font-family: 'Poppins', sans-serif;
 }
 
+.active-link {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
 /* ----------- .article page ------- */
 
 /* ----------- sidebar page ------- */

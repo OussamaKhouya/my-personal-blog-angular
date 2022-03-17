@@ -40,7 +40,7 @@
 
 <!-- MAIN CONTENT-->
 
- <app-blog-post-list></app-blog-post-list>
+ <router-outlet></router-outlet>
 
 <!-- END MAIN CONTENT-->
 
@@ -113,36 +113,18 @@
               </div>
             </article>
           </div>
-          <div class="flex-item">
-            <article class="article">
-              <div class="d-flex">
-                <a href="#">
-                  <img src="./assets/img3.png" class="object-fit px-1" alt="">
-                  <div class="px-1">
-                    <a href="#" class="text-title display-2 text-dark">
-                      Looking for some feedback for this rejected track
-                      technology
-                    </a>
-                    <p class="secondary-title text-secondary display-3">
-                      <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021 </span>
-                    </p>
-                  </div>
-                </a>
-              </div>
-            </article>
-          </div>
+
         </div>
       </div>
       <div class="col-3">
-        <h2 class="footer-title secondary-title">Tags</h2>
+        <h2 class="footer-title secondary-title">Categories</h2>
 
         <div class="tags">
           <div class="d-flex flex-wrap">
-            <a href="#" class="nav-link btn bg-light">Travel</a>
-            <a href="#" class="nav-link btn bg-light">Food</a>
-            <a href="#" class="nav-link btn bg-light">Lifestyle</a>
-            <a href="#" class="nav-link btn bg-light">Techonogy</a>
-            <a href="#" class="nav-link btn bg-light">Fashion</a>
+            <a routerLink="/category/1" routerLinkActive="active-link" class="nav-link btn bg-light">EDUCATION & TRAINING</a>
+            <a routerLink="/category/2" routerLinkActive="active-link" class="nav-link btn bg-light">INDUSTRY KNOWLEDGE</a>
+            <a routerLink="/category/3" routerLinkActive="active-link" class="nav-link btn bg-light">CAREER ADVICE</a>
+
           </div>
         </div>
 
