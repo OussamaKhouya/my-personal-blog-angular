@@ -32,6 +32,13 @@ export class BlogPostService {
 
     );
   }
+
+
+  searchBlogPosts(theKeyword: string):Observable<BlogPost[]> {
+    const searchUrl = `${this.baseUrl}/search/findByTitleContaining?title=${theKeyword}`;
+    return this.httpClient.get<GetResponseBlogPost>(searchUrl).pipe(
+      map(response => response._embedded.blogPosts));
+  }
 }
 
 interface GetResponseBlogPost {

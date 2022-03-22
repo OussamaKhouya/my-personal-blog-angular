@@ -12,6 +12,7 @@ export class BlogPostListComponent implements OnInit {
 
   blogPosts: BlogPost[]=[];
   currentCategoryId: number = 1;
+  private searchMode: boolean = false;
 
   constructor(private blogPostService: BlogPostService,
               private route: ActivatedRoute) {}
@@ -24,6 +25,31 @@ export class BlogPostListComponent implements OnInit {
   }
 
   private listBlogPost() {
+
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+
+    if(this.searchMode){
+      this.handleSearchProducts();
+    }else {
+      this.handleListProducts();
+
+    }
+
+  }
+
+  private handleSearchProducts() {
+    // @ts-ignore
+    const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
+
+    this.blogPostService.searchBlogPosts(theKeyword).subscribe(
+      data => {
+        this.blogPosts = data;
+      }
+    )
+
+  }
+
+  private handleListProducts() {
 
     // check if "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');

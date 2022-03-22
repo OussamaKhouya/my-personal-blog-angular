@@ -208,13 +208,27 @@ a{
 
 .nav-link:hover{
   color: var(--primary-color);
+  cursor: pointer;
 }
 
 .search-box{
   display: inline;
-  border-right: 1px solid var(--secondary);
   padding-right: 12px;
   margin-right: 10px;
+}
+.search-box input[type=text] {
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 10px;
+  font-size: 16px;
+  border:2px solid #fff0;
+  color: var(--dark);
+}
+.search-box input[type=text]:focus{
+  box-sizing: border-box;
+  outline: none !important;
+  border:2px solid #ccc5;
 }
 
 .toggle-button{

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="grid" >
         <!-- article -->
-
+        <!-- loop over the collection of blog posts -->
         <div class="grid-item" *ngFor="let blogPost of blogPosts">
           <article class="article">
             <div class="card">
@@ -26,6 +26,11 @@
         </div>
 
         <!-- end article -->
+      </div>
+
+      <!-- If blogPosts empty then display a message -->
+      <div *ngIf="blogPosts?.length ==0" class="alert" role="alert">
+        No Blog Posts found.
       </div>
     </div>
   </section>

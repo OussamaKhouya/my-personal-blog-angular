@@ -6,8 +6,10 @@ import { BlogPostListComponent } from './components/blog-post-list/blog-post-lis
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import { BlogPostCategoryMenuComponent } from './components/blog-post-category-menu/blog-post-category-menu.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
+  {path:'search/:keyword', component: BlogPostListComponent},
   {path:'category/:id', component: BlogPostListComponent},
   {path:'category', component: BlogPostListComponent},
   {path:'blogPosts', component: BlogPostListComponent},
@@ -21,6 +23,7 @@ const routes: Routes = [
     AppComponent,
     BlogPostListComponent,
     BlogPostCategoryMenuComponent,
+    SearchComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,0 +1,7 @@
+<div class="search-box">
+  <input #myInput type="text"
+         placeholder="Search for blog posts ..."
+         (keyup.enter)="doSearch(myInput.value)" />
+
+  <a (click)="doSearch(myInput.value)" class="nav-link"><i class="fas fa-search"></i></a>
+</div>
