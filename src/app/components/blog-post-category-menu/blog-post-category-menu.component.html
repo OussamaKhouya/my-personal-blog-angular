@@ -1,0 +1,8 @@
+<div class="tags">
+  <div class="d-flex flex-wrap" *ngFor="let temBlogPCat of blogPostCategories">
+    <a routerLink="/category/{{temBlogPCat.id}}" routerLinkActive="active-link" class="nav-link btn bg-light">
+      {{temBlogPCat.categoryName}}
+    </a>
+
+  </div>
+</div>

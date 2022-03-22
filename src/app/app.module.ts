@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BlogPostListComponent } from './components/blog-post-list/blog-post-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
+import { BlogPostCategoryMenuComponent } from './components/blog-post-category-menu/blog-post-category-menu.component';
 
 const routes: Routes = [
   {path:'category/:id', component: BlogPostListComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     BlogPostListComponent,
+    BlogPostCategoryMenuComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
