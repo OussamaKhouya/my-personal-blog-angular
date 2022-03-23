@@ -39,6 +39,13 @@ export class BlogPostService {
     return this.httpClient.get<GetResponseBlogPost>(searchUrl).pipe(
       map(response => response._embedded.blogPosts));
   }
+
+  getBlogPost(theBlogPostId: number): Observable<BlogPost> {
+
+    // need to build URL based on Blog Post id
+    const blogPostUrl = `${this.baseUrl}/${theBlogPostId}`;
+    return this.httpClient.get<BlogPost>(blogPostUrl);
+  }
 }
 
 interface GetResponseBlogPost {

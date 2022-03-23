@@ -7,8 +7,10 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import { BlogPostCategoryMenuComponent } from './components/blog-post-category-menu/blog-post-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { BlogPostDetailsComponent } from './components/blog-post-details/blog-post-details.component';
 
 const routes: Routes = [
+  {path:'blogPosts/:id', component: BlogPostDetailsComponent},
   {path:'search/:keyword', component: BlogPostListComponent},
   {path:'category/:id', component: BlogPostListComponent},
   {path:'category', component: BlogPostListComponent},
@@ -24,6 +26,7 @@ const routes: Routes = [
     BlogPostListComponent,
     BlogPostCategoryMenuComponent,
     SearchComponent,
+    BlogPostDetailsComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

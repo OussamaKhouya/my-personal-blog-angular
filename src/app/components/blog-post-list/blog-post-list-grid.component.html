@@ -4,17 +4,17 @@
       <div class="grid" >
         <!-- article -->
         <!-- loop over the collection of blog posts -->
-        <div class="grid-item" *ngFor="let blogPost of blogPosts">
+        <div class="grid-item" *ngFor="let tempBlogPost of blogPosts">
           <article class="article">
             <div class="card">
               <div class="overflow-img">
-                <a href="#">
-                  <img [src]="blogPost.imageUrl" class="img-fluid" alt="">
+                <a routerLink="/blogPosts/{{tempBlogPost.id}}">
+                  <img [src]="tempBlogPost.imageUrl" class="img-fluid" alt="">
                 </a>
               </div>
               <div class="card-body text-center px-1">
-                <a href="#" class="text-title display-1 text-dark">
-                  {{blogPost.title}}
+                <a routerLink="/blogPosts/{{tempBlogPost.id}}" class="text-title display-1 text-dark">
+                  {{tempBlogPost.title}}
                 </a>
                 <p class="secondary-title text-secondary display-3">
                   <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021</span>
