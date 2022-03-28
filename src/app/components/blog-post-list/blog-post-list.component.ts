@@ -10,10 +10,16 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class BlogPostListComponent implements OnInit {
 
-  blogPosts: BlogPost[]=[];
+  blogPosts: BlogPost[] = [];
   currentCategoryId: number = 1;
-  private searchMode: boolean = false;
+  previousCategoryId: number = 1;
+  searchMode: boolean = false;
 
+  // new Properties for pagination
+  thePageNumber: number = 1;
+  thePageSize: number = 5;
+  theTotalElements: number = 10;
+  previousKeyword: string = "";
   constructor(private blogPostService: BlogPostService,
               private route: ActivatedRoute) {}
 
@@ -24,32 +30,38 @@ export class BlogPostListComponent implements OnInit {
 
   }
 
-  private listBlogPost() {
+   listBlogPost() {
 
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
 
     if(this.searchMode){
-      this.handleSearchProducts();
+      this.handleSearchBlogPosts();
     }else {
-      this.handleListProducts();
+      this.handleListBlogPosts();
 
     }
-
   }
 
-  private handleSearchProducts() {
+  private handleSearchBlogPosts() {
     // @ts-ignore
     const theKeyword: string = this.route.snapshot.paramMap.get('keyword');
+    // if we have a different keyword than previous
+    // then set thePageNumber to 1
 
-    this.blogPostService.searchBlogPosts(theKeyword).subscribe(
-      data => {
-        this.blogPosts = data;
-      }
-    )
+    if (this.previousKeyword != theKeyword){
+      this.thePageNumber = 1;
+    }
+    this.previousKeyword = theKeyword ;
 
+    console.log(`keyword=${theKeyword}, thePageNumber=${this.thePageNumber}`)
+
+    // now search for Blog Posts using keyword
+    this.blogPostService.searchBlogPostsPaginate(this.thePageNumber - 1,
+                                                  this.thePageSize,
+                                                  theKeyword).subscribe(this.processResult());
   }
 
-  private handleListProducts() {
+  private handleListBlogPosts() {
 
     // check if "id" parameter is available
     const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
@@ -63,11 +75,53 @@ export class BlogPostListComponent implements OnInit {
       // no category id available ... default to category id 1
       this.currentCategoryId = 1;
     }
+
+    // check if we have a different category than previous
+    // Note: Angular will reuse a component if it is currently being viewed
+    //
+
+    //if we have a different category id than previous
+    // then set thePageNumber back to 1
+    if(this.previousCategoryId != this.currentCategoryId) {
+      this.thePageNumber = 1;
+    }
+
+    this.previousCategoryId = this.currentCategoryId;
+
+    console.log(`currentCategoryId=${this.currentCategoryId}, thePageNumber=${this.thePageNumber}`);
+
     // now get the blog posts for the given category id
-    this.blogPostService.getblogPostList(this.currentCategoryId).subscribe(
-      data => {
-        this.blogPosts = data;
-      }
-    )
+    this.blogPostService.getblogPostListPaginate(this.thePageNumber - 1,
+                                                        this.thePageSize,
+                                                        this.currentCategoryId)
+                                                        .subscribe(this.processResult())
+  }
+
+   processResult() {
+    return (data:any) => {
+      this.blogPosts = data._embedded.blogPosts;
+      this.thePageNumber = data.page.number + 1;
+      this.thePageSize = data.page.size ;
+      this.theTotalElements = data.page.totalElements ;
+    };
+  }
+
+  updatePageSize(pageSize: string) {
+    console.log(pageSize)
+    this.thePageSize = +pageSize;
+    this.thePageNumber = 1;
+    this.listBlogPost();
+  }
+}
+
+interface GetResponseBlogPosts {
+  _embedded:{
+    blogPosts:BlogPost[];
+  },
+  page: {
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }

@@ -17,13 +17,31 @@ export class BlogPostService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getBlogPost(theBlogPostId: number): Observable<BlogPost> {
+
+    // need to build URL based on Blog Post id
+    const blogPostUrl = `${this.baseUrl}/${theBlogPostId}`;
+    return this.httpClient.get<BlogPost>(blogPostUrl);
+  }
+
   getblogPostList(theCategoryId: number): Observable<BlogPost[]> {
 
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`;
-    return this.httpClient.get<GetResponseBlogPost>(searchUrl).pipe(
+    return this.httpClient.get<GetResponseBlogPosts>(searchUrl).pipe(
       map(response => response._embedded.blogPosts)
 
     );
+  }
+
+  getblogPostListPaginate(thePage: number,
+                          thePageSize: number,
+                          theCategoryId: number): Observable<GetResponseBlogPosts> {
+
+    // need to build URL based on category id, page and size
+    const url = `${this.baseUrl}/search/findByCategoryId`
+                +`?id=${theCategoryId}&page=${thePage}&size=${thePageSize}` ;
+
+    return this.httpClient.get<GetResponseBlogPosts>(url);
   }
 
   getblogPostCategories(): Observable<BlogPostCategory[]> {
@@ -36,21 +54,35 @@ export class BlogPostService {
 
   searchBlogPosts(theKeyword: string):Observable<BlogPost[]> {
     const searchUrl = `${this.baseUrl}/search/findByTitleContaining?title=${theKeyword}`;
-    return this.httpClient.get<GetResponseBlogPost>(searchUrl).pipe(
+    return this.httpClient.get<GetResponseBlogPosts>(searchUrl).pipe(
       map(response => response._embedded.blogPosts));
   }
 
-  getBlogPost(theBlogPostId: number): Observable<BlogPost> {
+  searchBlogPostsPaginate(thePage: number,
+                          thePageSize: number,
+                          theKeyword: string): Observable<GetResponseBlogPosts> {
 
-    // need to build URL based on Blog Post id
-    const blogPostUrl = `${this.baseUrl}/${theBlogPostId}`;
-    return this.httpClient.get<BlogPost>(blogPostUrl);
+    // need to build URL based on keyword , page and size
+    const searchUrl = `${this.baseUrl}/search/findByTitleContaining?title=${theKeyword}`
+                    +`&page=${thePage}&size=${thePageSize}` ;
+    console.log(searchUrl);
+    return this.httpClient.get<GetResponseBlogPosts>(searchUrl);
   }
+
+
+
+
 }
 
-interface GetResponseBlogPost {
+interface GetResponseBlogPosts {
   _embedded:{
     blogPosts:BlogPost[];
+  },
+  page: {
+    size: number;
+    totalElements: number;
+    totalPages: number;
+    number: number;
   }
 }
 

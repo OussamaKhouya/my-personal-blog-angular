@@ -1,7 +1,7 @@
 <main id="site-main">
   <section id="posts">
-    <div class="container">
-      <div class="grid" >
+    <div class="my-container">
+      <div class="my-grid" >
         <!-- article -->
         <!-- loop over the collection of blog posts -->
         <div class="grid-item" *ngFor="let tempBlogPost of blogPosts">
@@ -9,16 +9,16 @@
             <div class="card">
               <div class="overflow-img">
                 <a routerLink="/blogPosts/{{tempBlogPost.id}}">
-                  <img [src]="tempBlogPost.imageUrl" class="img-fluid" alt="">
+                  <img [src]="tempBlogPost.imageUrl" class="my-img-fluid" alt="">
                 </a>
               </div>
-              <div class="card-body text-center px-1">
-                <a routerLink="/blogPosts/{{tempBlogPost.id}}" class="text-title display-1 text-dark">
+              <div class="card-body my-text-center my-px-1">
+                <a routerLink="/blogPosts/{{tempBlogPost.id}}" class="my-text-title my-display-1 my-text-dark">
                   {{tempBlogPost.title}}
                 </a>
-                <p class="secondary-title text-secondary display-3">
-                  <span><i class="far fa-clock text-primary"></i> Clock Wed 02, 2021</span>
-                  <span><i class="far fa-comments text-primary"></i> 12</span>
+                <p class="my-secondary-title my-text-secondary my-display-3">
+                  <span><i class="far fa-clock my-text-primary"></i> Clock Wed 02, 2021</span>
+                  <span><i class="far fa-comments my-text-primary"></i> 12</span>
                 </p>
               </div>
             </div>
@@ -26,6 +26,36 @@
         </div>
 
         <!-- end article -->
+      </div>
+
+      <div *ngIf="blogPosts?.length !=0" class="footer-pagination mt-5">
+
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-6">
+
+            <ngb-pagination class="float-end"
+                            [(page)]="thePageNumber"
+                            [pageSize]="thePageSize"
+                            [collectionSize]="theTotalElements"
+                            [maxSize]="5"
+                            [boundaryLinks]="true"
+                            (pageChange)="listBlogPost()">
+
+            </ngb-pagination>
+
+          </div>
+          <div class="col-md-2">
+            <span class="mx-2">Page Size</span>
+            <select #mychoice class="custom-select" (change)="updatePageSize(mychoice.value)">
+              <option>2</option>
+              <option selected="true" >5</option>
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       <!-- If blogPosts empty then display a message -->

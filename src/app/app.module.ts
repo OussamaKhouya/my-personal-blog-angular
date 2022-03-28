@@ -8,6 +8,7 @@ import {RouterModule, Routes} from "@angular/router";
 import { BlogPostCategoryMenuComponent } from './components/blog-post-category-menu/blog-post-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { BlogPostDetailsComponent } from './components/blog-post-details/blog-post-details.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 const routes: Routes = [
   {path:'blogPosts/:id', component: BlogPostDetailsComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
