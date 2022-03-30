@@ -11,6 +11,8 @@ import {ActivatedRoute} from "@angular/router";
 export class BlogPostListComponent implements OnInit {
 
   blogPosts: BlogPost[] = [];
+  featuredBlogPost: BlogPost = new BlogPost();
+  showFeaturedBlogPost = true;
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
   searchMode: boolean = false;
@@ -26,8 +28,13 @@ export class BlogPostListComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(()=> {
       this.listBlogPost();
+
     })
 
+  }
+
+  getFeaturedBlogPost(){
+     this.featuredBlogPost = {...this.blogPosts[0]};
   }
 
    listBlogPost() {
@@ -35,6 +42,7 @@ export class BlogPostListComponent implements OnInit {
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
 
     if(this.searchMode){
+      this.showFeaturedBlogPost = false;
       this.handleSearchBlogPosts();
     }else {
       this.handleListBlogPosts();
@@ -100,6 +108,7 @@ export class BlogPostListComponent implements OnInit {
    processResult() {
     return (data:any) => {
       this.blogPosts = data._embedded.blogPosts;
+      this.getFeaturedBlogPost();
       this.thePageNumber = data.page.number + 1;
       this.thePageSize = data.page.size ;
       this.theTotalElements = data.page.totalElements ;

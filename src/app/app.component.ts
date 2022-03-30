@@ -7,10 +7,5 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = 'my-personal-blog-angular';
-  showMenu: boolean = false;
-
-  toggleMenu() {
-  this.showMenu = !this.showMenu;
-  }
 
 }

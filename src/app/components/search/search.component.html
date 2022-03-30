@@ -1,7 +1,13 @@
-<div class="search-box">
-  <input #myInput type="text"
-         placeholder="Search for blog posts ..."
-         (keyup.enter)="doSearch(myInput.value)" />
-
-  <a (click)="doSearch(myInput.value)" class="my-nav-link"><i class="fas fa-search"></i></a>
+<div class="card mb-4">
+  <div class="card-header">Search</div>
+  <div class="card-body">
+    <div class="input-group">
+      <input #myInput (keyup.enter)="doSearch(myInput.value)"
+             class="form-control" type="text"
+             placeholder="Search for blog posts ..."
+             aria-label="Enter search term..."
+             aria-describedby="button-search" />
+      <button (click)="doSearch(myInput.value)" class="btn btn-primary" id="button-search" type="button">Go!</button>
+    </div>
+  </div>
 </div>

@@ -1,199 +1,61 @@
-<main id="site-main">
-
-  <!-- Post Content -->
-  <section class="my-container">
-    <article id="post">
-      <!-- article heading -->
-      <div class="headings my-text-center">
-        <div class="category">
-          <a href="#" class="my-nav-link">Travel</a>
-        </div>
-
-        <div class="title">
-          <h2 class="my-text-title my-text-dark my-display-1">{{blogPost.title}}</h2>
-        </div>
-
-        <div class="meta">
-          <a href="#" class="link my-display-2 my-text-secondary my-px-1">
-            <i class="fas fa-user my-text-primary"></i> John Stephens
-          </a>
-          <a href="#" class="link my-display-2 my-text-secondary my-px-1">
-            <i class="fas fa-clock my-text-primary"></i>  Clock Wed 02, 2019
-          </a>
-          <a href="#" class="link my-display-2 my-text-secondary my-px-1">
-            <i class="fas fa-comments my-text-primary"></i> 12
-          </a>
-        </div>
-
-      </div>
-
-      <!-- thumbnail  -->
-      <div class="my-thumbnail my-mt-3">
-        <img [src]="blogPost.imageUrl" class="my-thumbnail" alt="">
-      </div>
-
-      <!-- content -->
-      <div class="content my-text-dark my-display-2 my-secondary-title my-mt-3" [innerHTML]="blogPost.content">
-      </div>
-
-      <a routerLink="/blogPosts" class="my-display-2 my-text-dark "><i class="fas fa-circle-arrow-left"></i> Back to Home Page</a>
-    </article>
-
-    <!-- post footer -->
-    <div class="post-footer my-mb-3">
-      <div class="post-tags my-d-flex my-flex-wrap my-justify-content-center">
-        <a href="#" class="my-nav-link my-btn my-bg-light">Travel</a>
-        <a href="#" class="my-nav-link my-btn my-bg-light">Food</a>
-        <a href="#" class="my-nav-link my-btn my-bg-light">Lifestyle</a>
-        <a href="#" class="my-nav-link my-btn my-bg-light">Techonogy</a>
-        <a href="#" class="my-nav-link my-btn my-bg-light">Fashion</a>
-      </div>
-
-      <div class="post-author my-text-center">
-        <div class="author-avatar">
-          <img src="./assets/face/face1.jpg" class="my-rounded" alt="">
-        </div>
-
-        <div class="author-info my-py-2">
-          <h3 class="my-text-dark">John Stephens</h3>
-
-          <p class="my-text-secondary my-secondary-title">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Recusandae, sequi! In harum laborum ipsa voluptatibus doloremque nulla, tempore aut veritatis.
-          </p>
-
-          <div class="post-tags my-d-flex my-flex-wrap my-justify-content-center">
-            <a href="#" class="my-nav-link"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="my-nav-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="my-nav-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="my-nav-link"><i class="fab fa-dribbble"></i></a>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- post related -->
-      <div class="post-realted my-py-2">
-        <div class="my-row my-justify-content-center">
-          <div class="prev">
-            <div class="my-py-2">
-              <a href="#" class="my-display-2 my-text-dark">
-                <i class="fas fa-chevron-left"></i>
-                Previous Post
-              </a>
+<!-- Post content-->
+<article>
+  <!-- Post header-->
+  <header class="mb-4">
+    <!-- Post title-->
+    <h1 class="fw-bolder mb-1">{{blogPost.title}}</h1>
+    <!-- Post meta content-->
+    <div class="text-muted fst-italic mb-2">Posted on January 1, 2022 by Start Bootstrap</div>
+    <!-- Post categories-->
+    <a class="badge bg-secondary text-decoration-none link-light mx-1" href="#!">Web Design</a>
+    <a class="badge bg-secondary text-decoration-none link-light " href="#!">Freebies</a>
+  </header>
+  <!-- Preview image figure-->
+  <figure class="mb-4">
+    <img class="img-fluid rounded" [src]="blogPost.imageUrl" alt="..." />
+  </figure>
+  <!-- Post content-->
+  <section class="mb-5"  [innerHTML]="blogPost.content" ></section>
+</article>
+<!-- Comments section-->
+<section class="mb-5">
+  <div class="card bg-light">
+    <div class="card-body">
+      <!-- Comment form-->
+      <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+      <!-- Comment with nested comments-->
+      <div class="d-flex mb-4">
+        <!-- Parent comment-->
+        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+        <div class="ms-3">
+          <div class="fw-bold">Commenter Name</div>
+          If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+          <!-- Child comment 1-->
+          <div class="d-flex mt-4">
+            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+            <div class="ms-3">
+              <div class="fw-bold">Commenter Name</div>
+              And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
             </div>
-            <article class="article my-text-center">
-              <div class="my-d-flex">
-                <a href="#">
-                  <img src="./assets/img9.jpg" class="my-object-fit" alt="">
-                </a>
-                <div class="cart-body my-px-1">
-                  <div class="category">
-                    <a href="#" class="link my-text-primary my-text-secondary">Fashion</a>
-                  </div>
-                  <a href="#" class="my-text-title my-display-1 my-text-dark">
-                    Looking for some feedback for this rejected track
-                    technology
-                  </a>
-                </div>
-              </div>
-            </article>
           </div>
-          <div class="next my-text-right">
-            <div class="my-py-2">
-              <a href="#" class="my-display-2 my-text-dark">
-                Next Post
-                <i class="fas fa-chevron-right"></i>
-              </a>
-            </div>
-            <article class="article my-text-center">
-              <div class="my-d-flex">
-                <div class="cart-body my-px-1">
-                  <div class="category">
-                    <a href="#" class="link my-text-primary my-text-secondary">Fashion</a>
-                  </div>
-                  <a href="#" class="my-text-title my-display-1 my-text-dark">
-                    Looking for some feedback for this rejected track
-                    technology
-                  </a>
-                </div>
-                <a href="#">
-                  <img src="./assets/img8.jpg" class="my-object-fit" alt="">
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-
-      <div class="post-comments my-py-2">
-        <h3 class="my-text-center my-display-1 my-secondary-title my-py-2">5 Comments</h3>
-
-        <div class="comment-details">
-          <div class="comment-item my-py-2">
-            <div class="my-d-flex">
-              <div class="avatar my-px-2">
-                <img src="./assets/face/face1.jpg" class="my-rounded" alt="">
-              </div>
-              <div class="comment-content">
-                <h5 class="my-display-2 my-m-0">Brandon Kelley</h5>
-                <p class="title-secondary my-text-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.
-                </p>
-              </div>
-            </div>
-            <!-- comment reply -->
-            <div class="reply my-py-2">
-              <div class="my-d-flex">
-                <div class="avatar my-px-2">
-                  <img src="./assets/face/face2.jpg" class="my-rounded" alt="">
-                </div>
-                <div class="comment-content">
-                  <h5 class="my-display-2 my-m-0">Brandon Kelley</h5>
-                  <p class="title-secondary my-text-dark">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="comment-item my-py-2">
-            <div class="my-d-flex">
-              <div class="avatar my-px-2">
-                <img src="./assets/face/face3.jpg" class="my-rounded" alt="">
-              </div>
-              <div class="comment-content">
-                <h5 class="my-display-2 my-m-0">Brandon Kelley</h5>
-                <p class="title-secondary my-text-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore aliqua. Quis ipsum suspendisse ultrices gravida lacus vel facilisis.
-                </p>
-
-              </div>
+          <!-- Child comment 2-->
+          <div class="d-flex mt-4">
+            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+            <div class="ms-3">
+              <div class="fw-bold">Commenter Name</div>
+              When you put money directly to a problem, it makes a good headline.
             </div>
           </div>
         </div>
-
-        <h3 class="my-text-center my-display-1 my-secondary-title my-py-2">Leave Comment</h3>
-
-        <div class="comment-form">
-          <div class="my-d-flex my-justify-content-between my-flex-wrap">
-            <input type="text" class="my-form-control " placeholder="Name">
-            <input type="email" class="my-form-control" placeholder="Email">
-            <input type="text" class="my-form-control" placeholder="Website">
-          </div>
-          <textarea class="my-form-control my-mt-3" placeholder="Message" rows="10"></textarea>
-          <div class="my-text-center">
-            <button type="submit" class="my-btn my-btn-primary my-display-2 my-text-light my-mt-2">Submit</button>
-          </div>
+      </div>
+      <!-- Single comment-->
+      <div class="d-flex">
+        <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+        <div class="ms-3">
+          <div class="fw-bold">Commenter Name</div>
+          When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
         </div>
       </div>
-
     </div>
-    <!-- .post footer -->
-
-  </section>
-  <!-- .Post Content -->
-
-
-</main>
+  </div>
+</section>
