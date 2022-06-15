@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map,Observable} from "rxjs";
 import {BlogPost} from "../common/blog-post"
 import {BlogPostCategory} from "../common/blog-post-category";
+import {environment} from "../../environments/environment";
 
 
 
@@ -11,9 +12,11 @@ import {BlogPostCategory} from "../common/blog-post-category";
 })
 export class BlogPostService {
 
-  private baseUrl = "http://localhost:8082/api/blogPosts"
+  private blogEndpoint = environment.baseApiUrl;
 
-  private categoryUrl = "http://localhost:8082/api/blogPost-category"
+  private baseUrl = `${this.blogEndpoint}/blogPosts`
+
+  private categoryUrl = `${this.blogEndpoint}/blogPost-category`
 
   constructor(private httpClient: HttpClient) { }
 
